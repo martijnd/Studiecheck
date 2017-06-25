@@ -21,27 +21,27 @@ import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
 import nl.martijndorsman.studiecheck.models.CourseModel;
 import nl.martijndorsman.studiecheck.models.ECTS;
 
-import static nl.martijndorsman.studiecheck.VakkenlijstActivity.currentTable;
-import static nl.martijndorsman.studiecheck.VakkenlijstActivity.totaalECTSKeuze;
-import static nl.martijndorsman.studiecheck.VakkenlijstActivity.totaalECTSjaar1;
-import static nl.martijndorsman.studiecheck.VakkenlijstActivity.totaalECTSjaar2;
-import static nl.martijndorsman.studiecheck.VakkenlijstActivity.totaalECTSjaar3en4;
-
 /**
  * Created by Martijn on 25/06/17.
  */
 
 public class ViewAdapter extends RecyclerView.Adapter<Holder> {
+        private int totaalECTSjaar1;
+        private int totaalECTSjaar2;
+        private int totaalECTSjaar3en4;
+        private int totaalECTSKeuze;
         private EditText gradetxt;
         private Button gradeButton, cancelButton;
         private String newGrade;
         private TextView statustxt;
+        private String tabel;
         Context context;
         ECTS ects;
         // Een arraylist volgens de layout van de Coursemodel klasse
         ArrayList<CourseModel> courses;
 
-        public ViewAdapter(Context context, ArrayList<CourseModel> courses){
+        public ViewAdapter(String tabel, Context context, ArrayList<CourseModel> courses){
+            this.tabel = tabel;
             this.context = context;
             this.courses = courses;
         }
@@ -79,7 +79,7 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
 
                     String name = courses.get(pos).getName();
                     // Voeg een invoerscherm toe
-                    showDialog(name, pos);
+                    showDialog(tabel, name, pos);
                     // Toon een Snackbar met het huidige ingedrukte cijfer (UX design)
                     Snackbar.make(v, courses.get(pos).getName(), Snackbar.LENGTH_SHORT).show();
                     // Vertel de adapter dat de huidige dataset is aangepast, en de View dus geupdate moet worden
@@ -88,8 +88,7 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
             });
         }
         // Functie om het cijfer invoerscherm te tonen
-        private void showDialog(final String name, final int pos){
-            final String tabel = currentTable;
+        private void showDialog(final String tabel, final String name, final int pos){
             final DatabaseAdapter dbAdapter = new DatabaseAdapter(context);
             final Dialog d = new Dialog(context);
             d.requestWindowFeature(Window.FEATURE_NO_TITLE);

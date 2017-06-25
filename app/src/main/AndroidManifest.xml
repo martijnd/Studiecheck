@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VakkenlijstActivity">
+        <activity android:name=".VakkenlijstSlideActivity">
         </activity>
         <activity android:name=".KeuzevakDialog"
             android:theme= "@android:style/Theme.Dialog">
