@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Studiecheck</string>
+    <string name="scherm1Button">Studiecheck</string>
+    <string name="vakkenlijstbutton">Vakkenlijst ophalen</string>
+    <string name="vakkenbekijken">Vakken bekijken</string>
+    <string name="voortgangbekijken">Voortgang bekijken</string>
+    <string name="gemaaktdoor">Gemaakt door Robert Potjes en \nMartijn Dorsman</string>
+    <string name="name">Vak</string>
+    <string name="ects">ECTS</string>
+    <string name="period">Periode</string>
+    <string name="grade">Cijfer</string>
+  <string name="bevestig">Bevestig</string>
+    <string name="cijferaanpassen">Cijfer aanpassen</string>
+    <string name="annuleer">Annuleer</string>
+    <string name="kieseencategorie">Kies een categorie</string>
+    <string name="voortgang">Voortgang</string>
+    <string name="nietbehaald">Niet behaald</string>
+    <string name="status">Status</string>
+    <string name="kiesjekeuzevakken">Kies je keuzevakken</string>
+    <string name="vlActivityInstructions">Druk op een vak om het cijfer aan te passen</string>
+    <string name="mActivityInstructions">Sleep omlaag of druk op \'Vakkenlijst ophalen\' om de gegevens in te laden</string>
+    <string name="jaar1">Jaar 1</string>
+    <string name="jaar2">Jaar 2</string>
+    <string name="jaar3en4">Jaar 3 en 4</string>
+    <string name="keuze">Keuzevakken</string>
+</resources>
