@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Gastlyguy\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.7\751f548c85fa49f330cecbb1875893f971b33c4e\gson-2.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\gson-2.7_f601daf9b3b7ea77cddb79f7c38239e06853c6b5.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f493e249fc5502807c8691431c21347852f3a85b">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_35e43a923ef535dcc8f66fe8cbb15f0ca440c983\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Gastlyguy\.android\build-cache\f5b430d1b31542cd05f2ea8b95daa67a17c66559\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="68956f5ba1517b7a3d513ba540548e257741cbae">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\classes_00930f0e94d2871a8b31a97a34153dedc60a46e9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\android\databinding\baseLibrary\2.3.3\baseLibrary-2.3.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eb3399988a52099b0127e27fb5bed666eca86ace">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\baseLibrary-2.3.3_cc3afaf91424e734a49c56928e36b4d96c0d272b.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_9ebc3d14a9547a895d428006882f86e3fa5e5056\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Gastlyguy\.android\build-cache\2f45a6851eaac7421d2f9c199ec4bc5b04d6d60c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7f2f348b830f292429db987f74ba3e67c6752322">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\classes_4365101549eec5b684bf424333b1be056ee48429.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Gastlyguy\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v3.0.2\5d4eb08a326bdbd7fbbddc769666898c9936b282\MPAndroidChart-v3.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5d4eb08a326bdbd7fbbddc769666898c9936b282">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\MPAndroidChart-v3.0.2_916d36d80474a3670eefae9141d6869f421b8462.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Gastlyguy\.android\build-cache\42959f404770d6ed398356c11b5b0d0ad96ea2b9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="C:\Users\Gastlyguy\Documents\IMTPMD\app\build\intermediates\pre-dexed\debug\classes_d85276978be76208732ba71a5314ade13ae98fad.jar" />
+    </item>
+
+</items>
