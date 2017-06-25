@@ -4,12 +4,12 @@
     <string name="vakkenlijstbutton">Vakkenlijst ophalen</string>
     <string name="vakkenbekijken">Vakken bekijken</string>
     <string name="voortgangbekijken">Voortgang bekijken</string>
-    <string name="gemaaktdoor">Gemaakt door Robert Potjes en \nMartijn Dorsman</string>
+    <string name="gemaaktdoor">Gemaakt door Martijn Dorsman</string>
     <string name="name">Vak</string>
     <string name="ects">ECTS</string>
     <string name="period">Periode</string>
     <string name="grade">Cijfer</string>
-  <string name="bevestig">Bevestig</string>
+    <string name="bevestig">Bevestig</string>
     <string name="cijferaanpassen">Cijfer aanpassen</string>
     <string name="annuleer">Annuleer</string>
     <string name="kieseencategorie">Kies een categorie</string>
