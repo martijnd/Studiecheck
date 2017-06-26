@@ -32,7 +32,7 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.J
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 public class MainActivity extends Activity {
-    boolean vakkenGekozen = false; // TODO VERANDEREN
+    boolean vakkenGekozen = false;
     private SwipeRefreshLayout swipeContainer;
     ProgressDialog pd;
     boolean check = false;
@@ -60,7 +60,6 @@ public class MainActivity extends Activity {
         dbAdapter.openDB();
         Cursor c = dbAdapter.getAllData(Keuze);
         // Bind de button aan de onClickListener met de startActivity methode
-        Button vakkenOphaalButton = (Button) findViewById(R.id.vakkenophaalbutton);
         Button vakkenButton = (Button) findViewById(R.id.vakkenbutton);
         Button voortgangButton = (Button) findViewById(R.id.voortgangbutton);
         while(c.moveToNext()){
@@ -80,13 +79,6 @@ public class MainActivity extends Activity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
-        vakkenOphaalButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                getJSON();
-            }
-        });
 
         vakkenButton.setOnClickListener(new View.OnClickListener() {
             @Override

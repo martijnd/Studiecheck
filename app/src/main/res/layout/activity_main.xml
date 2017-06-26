@@ -88,18 +88,6 @@
                 android:layout_marginBottom="16dp" />
 
 
-
-            <Button
-                android:id="@+id/vakkenophaalbutton"
-                android:layout_width="240dp"
-                android:layout_height="38dp"
-                android:background="@color/colorButton"
-                android:text="@string/vakkenlijstbutton"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                />
         </LinearLayout>
 
     </LinearLayout>
