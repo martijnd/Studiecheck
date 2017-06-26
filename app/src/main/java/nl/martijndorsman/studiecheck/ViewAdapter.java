@@ -26,19 +26,13 @@ import nl.martijndorsman.studiecheck.models.ECTS;
  */
 
 public class ViewAdapter extends RecyclerView.Adapter<Holder> {
-        private int totaalECTSjaar1;
-        private int totaalECTSjaar2;
-        private int totaalECTSjaar3en4;
-        private int totaalECTSKeuze;
         private EditText gradetxt;
-        private Button gradeButton, cancelButton;
         private String newGrade;
-        private TextView statustxt;
         private String tabel;
-        Context context;
-        ECTS ects;
+        private Context context;
+        private ECTS ects;
         // Een arraylist volgens de layout van de Coursemodel klasse
-        ArrayList<CourseModel> courses;
+        private ArrayList<CourseModel> courses;
 
         public ViewAdapter(String tabel, Context context, ArrayList<CourseModel> courses){
             this.tabel = tabel;
@@ -95,9 +89,8 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
             d.requestWindowFeature(Window.FEATURE_NO_TITLE);
             d.setContentView(R.layout.gradeeditwindow);
             gradetxt = (EditText) d.findViewById(R.id.etGradeEdit);
-            gradeButton = (Button) d.findViewById(R.id.gradeButton);
-            cancelButton = (Button) d.findViewById(R.id.cancelButton);
-            statustxt = (TextView) d.findViewById(R.id.behaaldresulttxt);
+            Button gradeButton = (Button) d.findViewById(R.id.gradeButton);
+            Button cancelButton = (Button) d.findViewById(R.id.cancelButton);
 //      Keyboard pop up wanneer het dialoog tevoorschijn komt (UX design)
             gradetxt.setOnFocusChangeListener(new View.OnFocusChangeListener(){
                 @Override
@@ -146,7 +139,6 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
                     } else {
                         Toast.makeText(context, "Geef een cijfer tussen de 1 en 10", Toast.LENGTH_SHORT).show();
                     }
-                    totaalBehaaldeECTS(tabel);
                 }
             });
             // Maak een onClicklistener voor de annuleerknop die het dialoog weghaalt
@@ -162,50 +154,6 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
         @Override
         public int getItemCount() {
             return courses.size();
-        }
-
-        public void totaalBehaaldeECTS(String tabel){
-            switch(tabel){
-                case "Jaar1":
-                    totaalECTSjaar1 = 0;
-                    for (int i = 0; i < courses.size(); i++){
-                        Double gradeDouble = Double.parseDouble(courses.get(i).getGrade());
-                        int ECTSint = Integer.parseInt(courses.get(i).getEcts());
-                        if (gradeDouble >= 5.5){
-                            totaalECTSjaar1 += ECTSint;
-                        }
-                    }
-                    break;
-                case "Jaar2":
-                    totaalECTSjaar2 = 0;
-                    for (int i = 0; i < courses.size(); i++){
-                        Double gradeDouble = Double.parseDouble(courses.get(i).getGrade());
-                        int ECTSint = Integer.parseInt(courses.get(i).getEcts());
-                        if (gradeDouble >= 5.5){
-                            totaalECTSjaar2 += ECTSint;
-                        }
-                    }
-                    break;
-                case "Jaar3en4":
-                    totaalECTSjaar3en4 = 0;
-                    for (int i = 0; i < courses.size(); i++){
-                        Double gradeDouble = Double.parseDouble(courses.get(i).getGrade());
-                        int ECTSint = Integer.parseInt(courses.get(i).getEcts());
-                        if (gradeDouble >= 5.5){
-                            totaalECTSjaar3en4 += ECTSint;
-                        }
-                    }
-                    break;
-                case "Keuze":
-                    totaalECTSKeuze = 0;
-                    for (int i = 0; i < courses.size(); i++){
-                        Double gradeDouble = Double.parseDouble(courses.get(i).getGrade());
-                        int ECTSint = Integer.parseInt(courses.get(i).getEcts());
-                        if (gradeDouble >= 5.5){
-                            totaalECTSKeuze += ECTSint;
-                        }
-                    }
-            }
         }
     }
 

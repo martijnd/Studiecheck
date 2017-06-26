@@ -51,19 +51,14 @@ public class Vakkenlijst {
         mLayoutManager = new LinearLayoutManager(context);
         rv.setLayoutManager(new LinearLayoutManager(context));
         rv.setItemAnimator(new DefaultItemAnimator());
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv.getContext(),
-                mLayoutManager.getOrientation());
-        rv.addItemDecoration(dividerItemDecoration);
         ects = new ECTS(context);
         ects.getECTS(tabel);
         retrieve(tabel, context);
         adapter = new ViewAdapter(tabel, context, courses);
         rv.setAdapter(adapter);
-        Log.d(String.valueOf(courses.size()), "Test");
         }
 
     public void retrieve(String tabel, Context context) {
-        DatabaseHelper helper;
         DatabaseAdapter dbAdapter;
         courses = new ArrayList<>();
         dbAdapter = new DatabaseAdapter(context);

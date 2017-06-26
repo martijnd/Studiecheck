@@ -2,6 +2,7 @@ package nl.martijndorsman.studiecheck;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -30,6 +31,8 @@ public class VakkenlijstSlideActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -52,6 +55,22 @@ public class VakkenlijstSlideActivity extends FragmentActivity {
                 return new VakkenlijstFragmentThree();
             } else {
                 return new VakkenlijstFragmentFour();
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position){
+            switch(position){
+                case 0:
+                    return getString(R.string.jaar1);
+                case 1:
+                    return getString(R.string.jaar2);
+                case 2:
+                    return getString(R.string.jaar3en4tl);
+                case 3:
+                    return getString(R.string.keuzetl);
+                default:
+                    return null;
             }
         }
 

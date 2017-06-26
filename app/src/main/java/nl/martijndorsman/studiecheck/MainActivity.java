@@ -32,7 +32,7 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.J
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 public class MainActivity extends Activity {
-    boolean vakkenGekozen = false;
+    boolean vakkenGekozen = false; // TODO VERANDEREN
     private SwipeRefreshLayout swipeContainer;
     ProgressDialog pd;
     boolean check = false;
@@ -201,11 +201,10 @@ public class MainActivity extends Activity {
         if(!doesDatabaseExist(getApplicationContext())) {
 
             new JsonTask().execute(url);
-            swipeContainer.setRefreshing(false);
         }
         else {
             Toast.makeText(MainActivity.this, "Vakkenlijst is al opgehaald", Toast.LENGTH_SHORT).show();
-            swipeContainer.setRefreshing(false);
         }
+        swipeContainer.setRefreshing(false);
     }
 }
