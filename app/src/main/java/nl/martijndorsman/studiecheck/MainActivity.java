@@ -3,11 +3,15 @@ package nl.martijndorsman.studiecheck;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -17,8 +21,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
+import nl.martijndorsman.studiecheck.models.Vakkenlijst;
 
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Jaar1;
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Jaar2;
@@ -26,7 +32,7 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.J
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 public class MainActivity extends Activity {
-
+    boolean vakkenGekozen = false;
     private SwipeRefreshLayout swipeContainer;
     ProgressDialog pd;
     boolean check = false;
@@ -35,6 +41,8 @@ public class MainActivity extends Activity {
     public JSONArray jaar2;
     public JSONArray jaar3en4;
     public JSONArray keuze;
+    ArrayList<String> keuzevakken;
+    ArrayList<String> geselecteerdeVakken;
 
     private String TAG = MainActivity.class.getSimpleName();
     private boolean success = true;
@@ -46,10 +54,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        keuzevakken = new ArrayList<>();
+        geselecteerdeVakken = new ArrayList<>();
+        dbAdapter = new DatabaseAdapter(getApplicationContext());
+        dbAdapter.openDB();
+        Cursor c = dbAdapter.getAllData(Keuze);
         // Bind de button aan de onClickListener met de startActivity methode
         Button vakkenOphaalButton = (Button) findViewById(R.id.vakkenophaalbutton);
         Button vakkenButton = (Button) findViewById(R.id.vakkenbutton);
         Button voortgangButton = (Button) findViewById(R.id.voortgangbutton);
+        while(c.moveToNext()){
+            String name = c.getString(0);
+            keuzevakken.add(name);
+        }
+
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -63,7 +81,6 @@ public class MainActivity extends Activity {
                 android.R.color.holo_red_light);
 
 
-
         vakkenOphaalButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -74,8 +91,12 @@ public class MainActivity extends Activity {
         vakkenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(MainActivity.this,KeuzevakDialog.class));
+                if(vakkenGekozen) {
+                    startActivity(new Intent(MainActivity.this, VakkenlijstSlideActivity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, KeuzevakDialog.class));
+                    vakkenGekozen = true;
+                }
             }
         });
 

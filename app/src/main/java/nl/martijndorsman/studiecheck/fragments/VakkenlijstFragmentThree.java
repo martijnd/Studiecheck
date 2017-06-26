@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import nl.martijndorsman.studiecheck.R;
 import nl.martijndorsman.studiecheck.models.ECTS;
@@ -23,14 +24,18 @@ public class VakkenlijstFragmentThree extends Fragment {
     Vakkenlijst vakkenlijst;
     ECTS ects;
     Context context;
+    TextView titleText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = getContext();
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_screen_slide_page, container, false);
+        rv = (RecyclerView) rootView.findViewById(R.id.mRecycler);
+        titleText = (TextView) rootView.findViewById(R.id.tvVoortgang);
+        titleText.setText(R.string.jaar3en4);
         vakkenlijst = new Vakkenlijst(context);
-        vakkenlijst.create(Jaar3en4, rootView, rv);
+        vakkenlijst.create(Jaar3en4, rv);
         return rootView;
     }
 }

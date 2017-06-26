@@ -46,6 +46,7 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
             this.courses = courses;
         }
 
+
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
             // view object

@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -16,7 +17,12 @@ import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
 import nl.martijndorsman.studiecheck.database.DatabaseHelper;
 import nl.martijndorsman.studiecheck.models.CourseModel;
 
+import static nl.martijndorsman.studiecheck.KeuzevakDialog.item1;
+import static nl.martijndorsman.studiecheck.KeuzevakDialog.item2;
+import static nl.martijndorsman.studiecheck.KeuzevakDialog.item3;
+import static nl.martijndorsman.studiecheck.KeuzevakDialog.item4;
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Jaar1;
+import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 /**
  * Created by Martijn on 25/06/17.
@@ -38,22 +44,25 @@ public class Vakkenlijst {
     public ArrayList<CourseModel> courses;
     public Vakkenlijst(Context context){
         this.context = context;
+        courses = new ArrayList<>();
     }
 
-    public void create(String tabel, ViewGroup rootView, RecyclerView rv){
-        rv = (RecyclerView) rootView.findViewById(R.id.mRecycler);
+    public void create(String tabel, RecyclerView rv){
+        mLayoutManager = new LinearLayoutManager(context);
         rv.setLayoutManager(new LinearLayoutManager(context));
         rv.setItemAnimator(new DefaultItemAnimator());
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv.getContext(),
                 mLayoutManager.getOrientation());
         rv.addItemDecoration(dividerItemDecoration);
         ects = new ECTS(context);
-        ects.getECTS(Jaar1);
-        adapter = new ViewAdapter(Jaar1, context, courses);
-        retrieve(tabel, context, adapter, rv);
+        ects.getECTS(tabel);
+        retrieve(tabel, context);
+        adapter = new ViewAdapter(tabel, context, courses);
+        rv.setAdapter(adapter);
+        Log.d(String.valueOf(courses.size()), "Test");
         }
 
-    public void retrieve(String tabel, Context context, ViewAdapter adapter, RecyclerView rv) {
+    public void retrieve(String tabel, Context context) {
         DatabaseHelper helper;
         DatabaseAdapter dbAdapter;
         courses = new ArrayList<>();
@@ -74,14 +83,20 @@ public class Vakkenlijst {
                 status = "Behaald";
             }
             CourseModel p = new CourseModel(name, ects, period, grade, status);
-            //Voeg toe aan de ArrayList
-            courses.add(p);
+            if(tabel == Keuze){
+                if(name.equals(item1) || name.equals(item2) || name.equals(item3) || name.equals(item4)) {
+                    //Voeg toe aan ArrayList
+                    courses.add(p);
+                }
+            }
+            else {
+                //Voeg toe aan de ArrayList
+                courses.add(p);
+            }
         }
         //Controleer of de ArrayList leeg is
-        if (!(courses.size() < 1)) {
-            rv.setAdapter(adapter);
-        }
         c.close();
         dbAdapter.closeDB();
+
     }
 }

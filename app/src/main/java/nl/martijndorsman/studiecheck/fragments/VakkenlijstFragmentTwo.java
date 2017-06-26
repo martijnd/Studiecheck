@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,14 +30,18 @@ public class VakkenlijstFragmentTwo extends Fragment {
     Vakkenlijst vakkenlijst;
     ECTS ects;
     Context context;
+    TextView titleText;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = getContext();
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_screen_slide_page, container, false);
+        rv = (RecyclerView) rootView.findViewById(R.id.mRecycler);
+        titleText = (TextView) rootView.findViewById(R.id.tvVoortgang);
+        titleText.setText(R.string.jaar2);
         vakkenlijst = new Vakkenlijst(context);
-        vakkenlijst.create(Jaar2, rootView, rv);
+        vakkenlijst.create(Jaar2, rv);
         return rootView;
     }
 }

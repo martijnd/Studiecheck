@@ -20,7 +20,7 @@
         <activity android:name=".VakkenlijstSlideActivity">
         </activity>
         <activity android:name=".KeuzevakDialog"
-            android:theme= "@android:style/Theme.Dialog">
+            android:theme= "@style/AppTheme.PopTheme">
         </activity>
         <activity android:name=".VoortgangActivity">
         </activity>

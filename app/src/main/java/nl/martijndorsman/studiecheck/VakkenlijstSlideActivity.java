@@ -34,12 +34,7 @@ public class VakkenlijstSlideActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if(viewPager.getCurrentItem() == 0){
             super.onBackPressed();
-        }
-        else {
-            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
-        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
