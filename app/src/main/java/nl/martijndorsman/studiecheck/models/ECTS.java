@@ -57,32 +57,6 @@ public class ECTS {
         dbAdapter.closeDB();
     }
 
-    public void retrieveSubject(String tabel, Context context) {
-        DatabaseAdapter dbAdapter = new DatabaseAdapter(context);
-        dbAdapter.openDB();
-        courses.clear();
-        Cursor c = dbAdapter.getAllData(tabel);
-        //Loop en voeg aan ArrayList toe
-        while (c.moveToNext()) {
-            String name = c.getString(0);
-            String ects = c.getString(1);
-            String period = c.getString(2);
-            String grade = c.getString(3);
-            String status = "Niet behaald";
-            Double gradeDouble = Double.parseDouble(grade);
-            if (gradeDouble>=5.5){
-                status = "Behaald";
-            }
-            if(name.equals(item1) || name.equals(item2) || name.equals(item3) || name.equals(item4)) {
-                CourseModel p = new CourseModel(name, ects, period, grade, status);
-                //Voeg toe aan ArrayList
-                courses.add(p);
-            }
-        }
-        c.close();
-        dbAdapter.closeDB();
-    }
-
     private int totaalBehaaldeECTS(String tabel) {
 
         int ects = 0;

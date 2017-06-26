@@ -18,6 +18,8 @@
     <string name="status">Status</string>
     <string name="kiesjekeuzevakken">Kies je keuzevakken</string>
     <string name="vlActivityInstructions">Druk op een vak om het cijfer aan te passen</string>
+    <string name="vlActivityInstructionsKeuze">Druk op een vak om het cijfer aan te passen\nDruk hier om de keuzevakken te bewerken</string>
+    <string name="vlActivityInstructionsKeuzeNew">Druk op een vak om het cijfer aan te passen\nDruk hier om de keuzevakken toe te voegen</string>
     <string name="mActivityInstructions">Sleep omlaag of druk op \'Vakkenlijst ophalen\' om de gegevens in te laden</string>
     <string name="jaar1">Jaar 1</string>
     <string name="jaar2">Jaar 2</string>

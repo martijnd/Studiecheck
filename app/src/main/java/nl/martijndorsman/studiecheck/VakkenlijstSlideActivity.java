@@ -21,6 +21,7 @@ import nl.martijndorsman.studiecheck.fragments.VakkenlijstFragmentTwo;
 
 public class VakkenlijstSlideActivity extends FragmentActivity {
     private static final int NUM_PAGES = 4;
+    int page = 0;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
@@ -33,6 +34,13 @@ public class VakkenlijstSlideActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            String pageString = b.getString("page");
+            page = Integer.parseInt(pageString);
+        }
+
+        viewPager.setCurrentItem(page);
     }
 
     @Override

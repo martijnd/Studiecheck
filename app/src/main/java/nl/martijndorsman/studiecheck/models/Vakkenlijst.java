@@ -1,27 +1,20 @@
 package nl.martijndorsman.studiecheck.models;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import nl.martijndorsman.studiecheck.R;
+
 import nl.martijndorsman.studiecheck.ViewAdapter;
 import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
-import nl.martijndorsman.studiecheck.database.DatabaseHelper;
-import nl.martijndorsman.studiecheck.models.CourseModel;
 
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item1;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item2;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item3;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item4;
-import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Jaar1;
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 /**
@@ -29,14 +22,8 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.K
  */
 
 public class Vakkenlijst {
-
     public RecyclerView rv;
-    DatabaseAdapter dbAdapter;
     LinearLayoutManager mLayoutManager;
-    public static int totaalECTSjaar1;
-    public static int totaalECTSjaar2;
-    public static int totaalECTSjaar3en4;
-    public static int totaalECTSKeuze;
     ViewAdapter adapter;
     ECTS ects;
 
@@ -53,6 +40,7 @@ public class Vakkenlijst {
         rv.setItemAnimator(new DefaultItemAnimator());
         ects = new ECTS(context);
         ects.getECTS(tabel);
+
         retrieve(tabel, context);
         adapter = new ViewAdapter(tabel, context, courses);
         rv.setAdapter(adapter);
@@ -64,6 +52,11 @@ public class Vakkenlijst {
         dbAdapter = new DatabaseAdapter(context);
         dbAdapter.openDB();
         courses.clear();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String item1 = prefs.getString("item1", "");
+        String item2 = prefs.getString("item2", "");
+        String item3 = prefs.getString("item3", "");
+        String item4 = prefs.getString("item4", "");
 
         Cursor c = dbAdapter.getAllData(tabel);
         //Loop en voeg aan ArrayList toe
@@ -89,7 +82,6 @@ public class Vakkenlijst {
                 courses.add(p);
             }
         }
-        //Controleer of de ArrayList leeg is
         c.close();
         dbAdapter.closeDB();
 

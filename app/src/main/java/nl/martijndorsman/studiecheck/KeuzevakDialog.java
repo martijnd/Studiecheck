@@ -1,9 +1,12 @@
 package nl.martijndorsman.studiecheck;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
+import nl.martijndorsman.studiecheck.models.Vakkenlijst;
 
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
@@ -28,6 +32,7 @@ public class KeuzevakDialog extends Activity {
     public static String item1, item2, item3, item4;
     List<String> keuzevakken;
     DatabaseAdapter dbAdapter;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +49,9 @@ public class KeuzevakDialog extends Activity {
         WindowManager.LayoutParams windowManager = getWindow().getAttributes();
         windowManager.dimAmount = 0.75f;
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = prefs.edit();
 
         dbAdapter = new DatabaseAdapter(this);
         dbAdapter.openDB();
@@ -84,9 +92,13 @@ public class KeuzevakDialog extends Activity {
             @Override
             public void onClick(View v) {
                 item1 = s1.getSelectedItem().toString();
+                editor.putString("item1", item1).apply();
                 item2 = s2.getSelectedItem().toString();
+                editor.putString("item2", item2).apply();
                 item3 = s3.getSelectedItem().toString();
+                editor.putString("item3", item3).apply();
                 item4 = s4.getSelectedItem().toString();
+                editor.putString("item4", item4).apply();
                 ArrayList<String> items = new ArrayList<>();
                 items.add(item1);
                 items.add(item2);
@@ -103,7 +115,12 @@ public class KeuzevakDialog extends Activity {
                 if(duplicates){
                     Toast.makeText(KeuzevakDialog.this, "Kies 4 verschillende keuzevakken", Toast.LENGTH_SHORT).show();
                 } else{
-                    startActivity(new Intent(KeuzevakDialog.this, VakkenlijstSlideActivity.class));
+                    Intent go=new Intent(KeuzevakDialog.this,VakkenlijstSlideActivity.class);
+                    Bundle b=new Bundle();
+                    b.putString("page","3");
+                    go.putExtras(b);
+                    startActivity(go);
+                    KeuzevakDialog.this.finish();
                 }
             }
         });
@@ -111,7 +128,12 @@ public class KeuzevakDialog extends Activity {
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent go=new Intent(KeuzevakDialog.this,VakkenlijstSlideActivity.class);
+                Bundle b=new Bundle();
+                b.putString("page","3");
+                go.putExtras(b);
+                startActivity(go);
+                KeuzevakDialog.this.finish();
             }
         });
     }

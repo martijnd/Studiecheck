@@ -32,7 +32,7 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.J
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 public class MainActivity extends Activity {
-    boolean vakkenGekozen = false;
+    boolean vakkenGekozen = true;
     private SwipeRefreshLayout swipeContainer;
     ProgressDialog pd;
     boolean check = false;
