@@ -73,7 +73,6 @@ public class MainActivity extends Activity {
             keuzevakken.add(name);
         }
         String dbFile = getApplicationContext().getDatabasePath("vakkenlijst2.db").toString();
-        Log.d(dbFile, " DATABASE");
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
