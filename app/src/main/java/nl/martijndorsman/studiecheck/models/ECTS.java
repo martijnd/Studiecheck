@@ -7,11 +7,6 @@ import java.util.ArrayList;
 
 import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
 
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item1;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item2;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item3;
-import static nl.martijndorsman.studiecheck.KeuzevakDialog.item4;
-
 /**
  * Created by Martijn on 25/06/17.
  */

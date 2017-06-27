@@ -10,10 +10,10 @@ import nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables;
  * Created by Martijn on 25/06/17.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final int dbVersion = 2;
+    private static final int dbVersion = 3;
 
     // database naam
-    private static final String dbName = "vakkenlijst.db";
+    public static final String dbName = "vakkenlijst2.db";
 
     // tabelnamen
     private static final String Jaar1 = "Jaar1";

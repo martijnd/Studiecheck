@@ -2,7 +2,6 @@ package nl.martijndorsman.studiecheck;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -75,8 +73,6 @@ public class ViewAdapter extends RecyclerView.Adapter<Holder> {
                     String name = courses.get(pos).getName();
                     // Voeg een invoerscherm toe
                     showDialog(tabel, name, pos);
-                    // Toon een Snackbar met het huidige ingedrukte cijfer (UX design)
-                    Snackbar.make(v, courses.get(pos).getName(), Snackbar.LENGTH_SHORT).show();
                     // Vertel de adapter dat de huidige dataset is aangepast, en de View dus geupdate moet worden
                     notifyDataSetChanged();
                 }

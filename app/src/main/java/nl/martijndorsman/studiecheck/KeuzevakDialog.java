@@ -1,7 +1,6 @@
 package nl.martijndorsman.studiecheck;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.martijndorsman.studiecheck.database.DatabaseAdapter;
-import nl.martijndorsman.studiecheck.models.Vakkenlijst;
 
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
@@ -93,12 +91,16 @@ public class KeuzevakDialog extends Activity {
             public void onClick(View v) {
                 item1 = s1.getSelectedItem().toString();
                 editor.putString("item1", item1).apply();
+
                 item2 = s2.getSelectedItem().toString();
                 editor.putString("item2", item2).apply();
+
                 item3 = s3.getSelectedItem().toString();
                 editor.putString("item3", item3).apply();
+
                 item4 = s4.getSelectedItem().toString();
                 editor.putString("item4", item4).apply();
+
                 ArrayList<String> items = new ArrayList<>();
                 items.add(item1);
                 items.add(item2);

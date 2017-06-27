@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -22,10 +23,10 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.K
  */
 
 public class Vakkenlijst {
-    public RecyclerView rv;
     LinearLayoutManager mLayoutManager;
     ViewAdapter adapter;
     ECTS ects;
+    SharedPreferences prefs;
 
     Context context;
     public ArrayList<CourseModel> courses;
@@ -52,12 +53,12 @@ public class Vakkenlijst {
         dbAdapter = new DatabaseAdapter(context);
         dbAdapter.openDB();
         courses.clear();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String item1 = prefs.getString("item1", "");
         String item2 = prefs.getString("item2", "");
         String item3 = prefs.getString("item3", "");
         String item4 = prefs.getString("item4", "");
-
+        Log.d("Keuzevakkenxxx2", item1);
         Cursor c = dbAdapter.getAllData(tabel);
         //Loop en voeg aan ArrayList toe
         while (c.moveToNext()) {
@@ -75,6 +76,7 @@ public class Vakkenlijst {
                 if(name.equals(item1) || name.equals(item2) || name.equals(item3) || name.equals(item4)) {
                     //Voeg toe aan ArrayList
                     courses.add(p);
+                    Log.d("Keuzevakkenxxx", item1);
                 }
             }
             else {

@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.app.AlertDialog;
 import android.util.Log;
@@ -32,8 +34,10 @@ import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.J
 import static nl.martijndorsman.studiecheck.database.DatabaseInfo.CourseTables.Keuze;
 
 public class MainActivity extends Activity {
-    boolean vakkenGekozen = true;
+    SharedPreferences prefs;
+    boolean vakkenGekozen = false;
     private SwipeRefreshLayout swipeContainer;
+    boolean dataBaseAangemaakt = false;
     ProgressDialog pd;
     boolean check = false;
     DatabaseAdapter dbAdapter = new DatabaseAdapter(this);
@@ -58,6 +62,8 @@ public class MainActivity extends Activity {
         geselecteerdeVakken = new ArrayList<>();
         dbAdapter = new DatabaseAdapter(getApplicationContext());
         dbAdapter.openDB();
+        prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        final SharedPreferences.Editor editor = prefs.edit();
         Cursor c = dbAdapter.getAllData(Keuze);
         // Bind de button aan de onClickListener met de startActivity methode
         Button vakkenButton = (Button) findViewById(R.id.vakkenbutton);
@@ -66,6 +72,8 @@ public class MainActivity extends Activity {
             String name = c.getString(0);
             keuzevakken.add(name);
         }
+        String dbFile = getApplicationContext().getDatabasePath("vakkenlijst2.db").toString();
+        Log.d(dbFile, " DATABASE");
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -83,12 +91,8 @@ public class MainActivity extends Activity {
         vakkenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vakkenGekozen) {
-                    startActivity(new Intent(MainActivity.this, VakkenlijstSlideActivity.class));
-                } else {
-                    startActivity(new Intent(MainActivity.this, KeuzevakDialog.class));
-                    vakkenGekozen = true;
-                }
+                startActivity(new Intent(MainActivity.this, VakkenlijstSlideActivity.class));
+
             }
         });
 
@@ -156,6 +160,9 @@ public class MainActivity extends Activity {
                 Log.d(TAG, "Couldn't get json from server.");
                 success = false;
             }
+            dataBaseAangemaakt = true;
+            final SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("dbAangemaakt", dataBaseAangemaakt).apply();
             return null;
         }
 
@@ -184,14 +191,14 @@ public class MainActivity extends Activity {
 
     }
 
-    private static boolean doesDatabaseExist(Context context) {
-        File dbFile = context.getDatabasePath("vakkenlijst.db");
-        return dbFile.exists();
-    }
+//    private static boolean doesDatabaseExist(Context context) {
+//        File dbFile = context.getDatabasePath("vakkenlijst2.db");
+//        return dbFile.exists();
+//    }
 
     private void getJSON(){
-        if(!doesDatabaseExist(getApplicationContext())) {
-
+        boolean dataBaseAangemaaktx = prefs.getBoolean("dbAangemaakt", false);
+        if(!dataBaseAangemaaktx) {
             new JsonTask().execute(url);
         }
         else {

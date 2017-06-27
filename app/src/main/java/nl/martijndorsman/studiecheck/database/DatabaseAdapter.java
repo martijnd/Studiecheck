@@ -57,7 +57,7 @@ public class DatabaseAdapter {
                 values.put(DatabaseInfo.CourseColumn.ECTS, ects);
                 values.put(DatabaseInfo.CourseColumn.PERIOD, period);
                 values.put(DatabaseInfo.CourseColumn.GRADE, grade);
-                db.insertWithOnConflict(tabel, null, values,SQLiteDatabase.CONFLICT_REPLACE);
+                db.insert(tabel, null, values);
             }
         } catch(JSONException e){
             e.printStackTrace();

@@ -10,10 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 import nl.martijndorsman.studiecheck.KeuzevakDialog;
 import nl.martijndorsman.studiecheck.R;
 import nl.martijndorsman.studiecheck.models.Vakkenlijst;
